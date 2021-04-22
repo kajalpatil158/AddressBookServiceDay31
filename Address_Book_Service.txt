@@ -1,0 +1,147 @@
+UC1:
+mysql> create database Addess_Book_Service;
+Query OK, 1 row affected (0.04 sec)
+
+mysql> use Addess_Book_Service;
+Database changed
+
+UC2:
+mysql> create table Address_Book_Service(First_Name varchar(30),Last_Name varchar(20),Address varchar(50),
+city varchar(10),State varchar(15), Zip double,Phone_Number double,Email varchar(40));
+Query OK, 0 rows affected (0.26 sec)
+
+UC3:
+mysql> insert into Address_Book_Service values('Kartik','Patil','Ravet','Pune','Maharastra',123456,8766789098,'kartik@123@gmail.com'),
+    -> ('Nishant','Bhosale','Andheri','Mumbai','Maharastra',567895,6543223456,'r123B@yahoo.com'),
+    -> ('kk','Borase','Bhadgaon','Jalgaon','Maharastra',8976548,8766556789,'kajalkhairnar@yahoo.com'),
+    -> ('Rupesh','Patil','Pachora','Jalgaon','Maharastra',9876543,8766543234,'rupesh122@gmail.com');
+Query OK, 4 rows affected (0.02 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from Address_Book_Service;_
++------------+-----------+----------+---------+------------+---------+--------------+-------------------------+
+| First_Name | Last_Name | Address  | city    | State      | Zip     | Phone_Number | Email                   |
++------------+-----------+----------+---------+------------+---------+--------------+-------------------------+
+| Nishant    | Bhosale   | Andheri  | Mumbai  | Maharastra |  567895 |   6543223456 | r123B@yahoo.com         |
+| kk         | Borase    | Bhadgaon | Jalgaon | Maharastra | 8976548 |   8766556789 | kajalkhairnar@yahoo.com |
+| Rupesh     | Patil     | Pachora  | Jalgaon | Maharastra | 9876543 |   8766543234 | rupesh122@gmail.com     |
+| Kartik     | Patil     | Ravet    | Pune    | Maharastra |  123456 |   8766789098 | KK2503@yahoo.com        |
++------------+-----------+----------+---------+------------+---------+--------------+-------------------------+
+4 rows in set (0.00 sec)
+
+
+UC4:
+mysql> update Address_Book_Service set First_Name='Kajal' where First_Name='kk';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from Address_Book_Service;_
++------------+-----------+----------+---------+------------+---------+--------------+-------------------------+
+| First_Name | Last_Name | Address  | city    | State      | Zip     | Phone_Number | Email                   |
++------------+-----------+----------+---------+------------+---------+--------------+-------------------------+
+| Nishant    | Bhosale   | Andheri  | Mumbai  | Maharastra |  567895 |   6543223456 | r123B@yahoo.com         |
+| Kajal      | Borase    | Bhadgaon | Jalgaon | Maharastra | 8976548 |   8766556789 | kajalkhairnar@yahoo.com |
+| Rupesh     | Patil     | Pachora  | Jalgaon | Maharastra | 9876543 |   8766543234 | rupesh122@gmail.com     |
+| Kartik     | Patil     | Ravet    | Pune    | Maharastra |  123456 |   8766789098 | KK2503@yahoo.com        |
++------------+-----------+----------+---------+------------+---------+--------------+-------------------------+
+4 rows in set (0.00 sec)
+
+UC5:
+mysql> delete from Address_Book_Service where First_Name='Kartik';
+Query OK, 1 row affected (0.01 sec)
+
+
+mysql> select * from Address_Book_Service;_
++------------+-----------+----------+---------+------------+---------+--------------+-------------------------+
+| First_Name | Last_Name | Address  | city    | State      | Zip     | Phone_Number | Email                   |
++------------+-----------+----------+---------+------------+---------+--------------+-------------------------+
+| Nishant    | Bhosale   | Andheri  | Mumbai  | Maharastra |  567895 |   6543223456 | r123B@yahoo.com         |
+| Kajal      | Borase    | Bhadgaon | Jalgaon | Maharastra | 8976548 |   8766556789 | kajalkhairnar@yahoo.com |
+| Rupesh     | Patil     | Pachora  | Jalgaon | Maharastra | 9876543 |   8766543234 | rupesh122@gmail.com     |
++------------+-----------+----------+---------+------------+---------+--------------+-------------------------+
+3 rows in set (0.00 sec)
+
+UC6:
+ 
+mysql> select First_Name from Address_Book_Service where city='Mumbai' and State='Maharastra';
++------------+
+| First_Name |
++------------+
+| Nishant    |
++------------+
+1 row in set (0.00 sec)
+
+UC7:
+mysql> select count(city),count(State) from Address_Book_Service;_
++-------------+--------------+
+| count(city) | count(State) |
++-------------+--------------+
+|           3 |            3 |
++-------------+--------------+
+1 row in set (0.00 sec)
+
+UC8:
+mysql> select First_Name,city from Address_Book_Service ORDER BY First_Name;
++------------+---------+
+| First_Name | city    |
++------------+---------+
+| Kajal      | Jalgaon |
+| Nishant    | Mumbai  |
+| Rupesh     | Jalgaon |
++------------+---------+
+3 rows in set (0.00 sec)
+
+UC9:
+mysql> ALTER TABLE Address_Book_Service ADD Name varchar(15);
+Query OK, 0 rows affected (0.26 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE Address_Book_Service ADD tYPE varchar(25);
+Query OK, 0 rows affected (0.19 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> update Address_Book_Service set tYPE='Family' where First_Name='Kajal';
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update Address_Book_Service set tYPE='Friend' where First_Name='Nishant';
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update Address_Book_Service set tYPE='Professional' where First_Name='Rupesh';
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from Address_Book_Service;_
++------------+-----------+----------+---------+------------+---------+--------------+-------------------------+------+--------------+
+| First_Name | Last_Name | Address  | city    | State      | Zip     | Phone_Number | Email                   | Name | tYPE         |
++------------+-----------+----------+---------+------------+---------+--------------+-------------------------+------+--------------+
+| Nishant    | Bhosale   | Andheri  | Mumbai  | Maharastra |  567895 |   6543223456 | r123B@yahoo.com         | NULL | Friend       |
+| Kajal      | Borase    | Bhadgaon | Jalgaon | Maharastra | 8976548 |   8766556789 | kajalkhairnar@yahoo.com | NULL | Family       |
+| Rupesh     | Patil     | Pachora  | Jalgaon | Maharastra | 9876543 |   8766543234 | rupesh122@gmail.com     | NULL | Professional |
++------------+-----------+----------+---------+------------+---------+--------------+-------------------------+------+--------------+
+3 rows in set (0.00 sec)
+
+UC10:
+mysql> select First_Name ,count(tYPE) from Address_Book_Service;
++------------+-------------+
+| First_Name | count(tYPE) |
++------------+-------------+
+| Nishant    |           3 |
++------------+-------------+
+1 row in set (0.01 sec)
+
+UC11:
+mysql> update Address_Book_Service set tYPE='Family & Friend' where First_Name='Kajal';
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from Address_Book_Service;_
++------------+-----------+----------+---------+------------+---------+--------------+-------------------------+------+-----------------+
+| First_Name | Last_Name | Address  | city    | State      | Zip     | Phone_Number | Email                   | Name | tYPE            |
++------------+-----------+----------+---------+------------+---------+--------------+-------------------------+------+-----------------+
+| Nishant    | Bhosale   | Andheri  | Mumbai  | Maharastra |  567895 |   6543223456 | r123B@yahoo.com         | NULL | Friend          |
+| Kajal      | Borase    | Bhadgaon | Jalgaon | Maharastra | 8976548 |   8766556789 | kajalkhairnar@yahoo.com | NULL | Family & Friend |
+| Rupesh     | Patil     | Pachora  | Jalgaon | Maharastra | 9876543 |   8766543234 | rupesh122@gmail.com     | NULL | Professional    |
++------------+-----------+----------+---------+------------+---------+--------------+-------------------------+------+-----------------+
+3 rows in set (0.00 sec)
